@@ -1,14 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function MainBox() {
+export default function MainBox({ children }) {
   return (
     <MainBoxWrapper>
-      <MainBoxText>
-        당신만을 위한 소중함
-        <br />
-        마음을 담은 음악과 메시지를 전달해보세요 ~ ❤
-      </MainBoxText>
+      <MainBoxText>{children}</MainBoxText>
       <MainBoxImg>💌</MainBoxImg>
     </MainBoxWrapper>
   );
