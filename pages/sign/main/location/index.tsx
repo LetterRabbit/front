@@ -3,7 +3,6 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import Button from "../../../../src/components/Button/Button";
-import Modal from "../../../../src/components/Modal/ModalComponent";
 
 function BoxLocation() {
   const locationList = [
@@ -52,7 +51,6 @@ function BoxLocation() {
         </LocationContent>
       </BoxLocationContent>
       <Button width="100%">소중함 위치 지정하기</Button>
-      <Modal />
     </BoxLocationWrapper>
   );
 }
