@@ -6,6 +6,7 @@ export default function Button({ children, ...props }: BUTTON) {
 }
 
 interface BUTTON {
+  width: string;
   bgColor: string;
   color: string;
   children?: React.ReactNode;
@@ -13,10 +14,11 @@ interface BUTTON {
 }
 
 const ButtonWrapper = styled.button<BUTTON>`
-  width: 100%;
-  padding: 12px 0;
+  padding: 12px 26px;
   border: none;
   border-radius: 12px;
+  cursor: pointer;
+  width: ${(props) => props.width};
   color: ${(props) => props.color};
   background: ${(props) => props.bgColor};
 `;
