@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Children } from "react";
 import styled from "styled-components";
 import Button from "../../src/components/Button/Button";
@@ -22,7 +23,7 @@ export default Page_Sign;
 
 const LoginWrapper = styled.div`
   display: grid;
-  grid-template-rows: 700px 50px;
+  grid-template-rows: 80% 10%;
   place-items: center;
   min-height: 100vh;
 `;
