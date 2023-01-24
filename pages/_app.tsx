@@ -11,14 +11,18 @@ declare global {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    window.Kakao.init(process.env.KAKAO_KEY);
-    console.log(process.env.KAKAO_KEY);
-  }, []);
+  const kakaoInit = () => {
+    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
+    console.log(window.Kakao.isInitialized());
+  };
 
   return (
-    <AppLayout component={<Component {...pageProps} />}>
-      <Script src="https://developers.kakao.com/sdk/js/kakao.js"></Script>
-    </AppLayout>
+    <div>
+      <AppLayout component={<Component {...pageProps} />} />
+      <Script
+        src="https://developers.kakao.com/sdk/js/kakao.js"
+        onLoad={kakaoInit}
+      />
+    </div>
   );
 }

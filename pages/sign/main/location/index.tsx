@@ -1,10 +1,11 @@
 import { Input } from "antd";
+import Modal from "antd/es/modal/Modal";
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import Button from "../../../../src/components/Button/Button";
 
-function BoxLocation() {
+function BoxLocation({}) {
   const locationList = [
     {
       id: 0,
