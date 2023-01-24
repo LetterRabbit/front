@@ -9,7 +9,7 @@ const Kakao = () => {
   const loginHandler = useCallback(
     async (code: string | string[]) => {
       // 백엔드에 전송
-      const response: ResponseType = await fetch("/user/login", {
+      const response: ResponseType = await fetch("/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
