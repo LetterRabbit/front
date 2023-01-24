@@ -9,7 +9,7 @@ const Page_Sign = () => {
     console.log("window", window.Kakao);
 
     window.Kakao.Auth.authorize({
-      redirectUri: "http://localhost:4000/kakao"
+      redirectUri: "http://localhost:4000/main"
     });
   };
   return (
