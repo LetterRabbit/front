@@ -11,6 +11,7 @@ interface BUTTON {
   color?: string;
   children?: React.ReactNode;
   disabled?: boolean;
+  onClick: (e: Event) => void;
 }
 
 const ButtonWrapper = styled.button<BUTTON>`
