@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import { Children } from "react";
 import styled from "styled-components";
 import Button from "../../src/components/Button/Button";
 import MainBox from "../../src/components/MainBox/MainBox";
 
-const Page_Sign = ({ ...props }) => {
+const Page_Sign = () => {
+  const kakaoLogin = async () => {
+    console.log("window", window.Kakao);
+
+    window.Kakao.Auth.authorize({
+      redirectUri: "http://localhost:4000/main"
+    });
+  };
   return (
     <LoginWrapper>
       <MainBox>
@@ -22,7 +30,7 @@ export default Page_Sign;
 
 const LoginWrapper = styled.div`
   display: grid;
-  grid-template-rows: 700px 50px;
+  grid-template-rows: 80% 10%;
   place-items: center;
   min-height: 100vh;
 `;
