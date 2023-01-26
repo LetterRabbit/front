@@ -19,7 +19,7 @@ const Page_Sign = () => {
         <br />
         마음을 담은 음악과 메시지를 전달해보세요 ~ ❤
       </MainBox>
-      <Button width="100%" bgColor="#F9E000" color="#111" onClick={kakaoLogin}>
+      <Button width="100%" bgColor="#F9E000" color="#111">
         카카오로 로그인
       </Button>
     </LoginWrapper>

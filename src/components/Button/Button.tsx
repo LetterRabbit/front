@@ -7,8 +7,8 @@ export default function Button({ children, ...props }: BUTTON) {
 
 interface BUTTON {
   width: string;
-  bgColor: string;
-  color: string;
+  bgColor?: string;
+  color?: string;
   children?: React.ReactNode;
   disabled?: boolean;
   onClick: (e: Event) => void;
