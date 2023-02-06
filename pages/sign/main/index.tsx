@@ -2,15 +2,25 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
 import { Fragment } from "react";
+import { Button, Drawer } from "antd";
 import styled from "styled-components";
-import Button from "../../../src/components/Button/Button";
+import ComponentButton from "../../../src/components/Button/Button";
 import MainBox from "../../../src/components/MainBox/MainBox";
 
 export default function main() {
   const router = useRouter();
   const [showButton, setShowButton] = useState(true);
+  const [open, setOpen] = useState(false);
   const handleNow = () => {
     setShowButton(!showButton);
+  };
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -30,24 +40,50 @@ export default function main() {
         <ContentWrapper>
           <Title>님의 소중함</Title>
           {showButton ? (
-            <Button width="50%" bgColor="#3D3D3D" onClick={() => handleNow()}>
+            <ComponentButton
+              width="50%"
+              bgColor="#3D3D3D"
+              onClick={() => handleNow()}
+            >
               내 소중함 열어보기
-            </Button>
+            </ComponentButton>
           ) : (
             <ShowButtonWrap>
-              <Button width="25%" margin="0 10px 0 0 " bgColor="#3D3D3D">
+              <ComponentButton
+                width="25%"
+                margin="0 10px 0 0 "
+                bgColor="#3D3D3D"
+              >
                 전체
-              </Button>
-              <Button width="25%" margin="0 0 0 10px" bgColor="#3D3D3D">
+              </ComponentButton>
+              <ComponentButton
+                width="25%"
+                margin="0 0 0 10px"
+                bgColor="#3D3D3D"
+              >
                 상세
-              </Button>
+              </ComponentButton>
             </ShowButtonWrap>
           )}
           <MainBox> </MainBox>
         </ContentWrapper>
-        <Button width="100%" color="#fff" bgColor="#8B8B8B">
+        <ComponentButton width="100%" color="#fff" bgColor="#8B8B8B">
           내 소중함 링크 공유하기
-        </Button>
+        </ComponentButton>
+        <Img
+          onClick={showDrawer}
+          src="https://cdn-icons-png.flaticon.com/512/2989/2989870.png"
+        />
+        <Drawer
+          title="Basic Drawer"
+          placement="right"
+          onClose={onClose}
+          open={open}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Drawer>
       </MainWrapper>
     </div>
   );
@@ -69,6 +105,7 @@ const NextButton = styled.div`
 `;
 
 const MainWrapper = styled.div`
+  position: relative;
   display: grid;
   grid-template-rows: 80% 10%;
   place-items: center;
@@ -90,4 +127,12 @@ const ShowButtonWrap = styled.div`
   justify-content: center;
   width: 90%;
   margin: 0 auto;
+`;
+
+const Img = styled.img`
+  position: absolute;
+  width: 34px;
+  right: -10px;
+  top: 0;
+  cursor: pointer;
 `;
