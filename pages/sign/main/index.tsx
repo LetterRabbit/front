@@ -50,8 +50,7 @@ export default function main() {
   };
 
   return (
-    <div>
-      {/* <LocationWrapper> */}
+   {/* <LocationWrapper> */}
       {/* 첫 로그인 후  */}
       {/* <MainBox>
         반가워요! <br />
@@ -120,6 +119,8 @@ export default function main() {
         </Drawer>
       </MainWrapper>
     </div>
+      </NextButton>
+    </LocationWrapper>
   );
 }
 

@@ -87,7 +87,7 @@ export default BoxLocation;
 
 const BoxLocationWrapper = styled.div`
   display: grid;
-  grid-template-rows: 80% 10%;
+  grid-template-rows: 700px 50px;
   place-items: center;
   min-height: 100vh;
 `;
@@ -122,3 +122,4 @@ const StypedInput = styled(Input)`
     padding: 0px;
   }
 `;
+

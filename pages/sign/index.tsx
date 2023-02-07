@@ -6,10 +6,8 @@ import MainBox from "../../src/components/MainBox/MainBox";
 
 const Page_Sign = () => {
   const kakaoLogin = async () => {
-    console.log("window", window.Kakao);
-
     window.Kakao.Auth.authorize({
-      redirectUri: "http://localhost:4000/main"
+      redirectUri: "http://localhost:4000/sign/kakao",
     });
   };
   return (

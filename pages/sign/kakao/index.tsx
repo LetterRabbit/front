@@ -5,24 +5,21 @@ const Kakao = () => {
   const router = useRouter();
   const { code: authCode, error: kakaoServerError } = router.query;
 
-  //백엔드 POST request 요청하기...
   const loginHandler = useCallback(
     async (code: string | string[]) => {
-      // 백엔드에 전송
-      const response: ResponseType = await fetch("/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authCode: JSON.stringify(code)
+      const response: ResponseType = await fetch(
+        "http://127.0.0.1:8000/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authCode: JSON.stringify(code),
+          },
         }
-        // body: JSON.stringify({
-        //   authCode: code,
-        // }),
-      }).then((res) => res.json());
+      ).then((res) => res.json());
 
       if (response) {
-        console.log("response", response);
-        // 성공하면 홈으로 리다이렉트
+        console.log("success", response);
         router.push("/main");
       } else {
         // 실패하면 에러 페이지로 리다이렉트
