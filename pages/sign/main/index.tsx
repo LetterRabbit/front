@@ -2,25 +2,51 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
 import { Fragment } from "react";
-import { Button, Drawer } from "antd";
+import { Button, Drawer, message } from "antd";
 import styled from "styled-components";
 import ComponentButton from "../../../src/components/Button/Button";
 import MainBox from "../../../src/components/MainBox/MainBox";
+import ModalButton from "../../../src/components/Modal/Modal";
 
 export default function main() {
   const router = useRouter();
   const [showButton, setShowButton] = useState(true);
   const [open, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
   const handleNow = () => {
     setShowButton(!showButton);
   };
 
+  // drawer
   const showDrawer = () => {
     setOpen(true);
   };
 
   const onClose = () => {
     setOpen(false);
+  };
+
+  // modal
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  // message
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "링크가 복사되었습니다!",
+      duration: 2
+    });
   };
 
   return (
@@ -53,6 +79,7 @@ export default function main() {
                 width="25%"
                 margin="0 10px 0 0 "
                 bgColor="#3D3D3D"
+                onClick={() => router.push("/sign/main/all")}
               >
                 전체
               </ComponentButton>
@@ -60,6 +87,7 @@ export default function main() {
                 width="25%"
                 margin="0 0 0 10px"
                 bgColor="#3D3D3D"
+                onClick={() => router.push("/sign/main/detail")}
               >
                 상세
               </ComponentButton>
@@ -67,9 +95,15 @@ export default function main() {
           )}
           <MainBox> </MainBox>
         </ContentWrapper>
-        <ComponentButton width="100%" color="#fff" bgColor="#8B8B8B">
+        <ComponentButton
+          width="100%"
+          color="#fff"
+          bgColor="#8B8B8B"
+          onClick={success}
+        >
           내 소중함 링크 공유하기
         </ComponentButton>
+        {contextHolder}
         <Img
           onClick={showDrawer}
           src="https://cdn-icons-png.flaticon.com/512/2989/2989870.png"
