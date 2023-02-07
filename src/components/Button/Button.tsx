@@ -11,7 +11,8 @@ interface BUTTON {
   color?: string;
   children?: React.ReactNode;
   disabled?: boolean;
-  onClick: (e: Event) => void;
+  onClick?: (e: Event) => void;
+  margin?: string;
 }
 
 const ButtonWrapper = styled.button<BUTTON>`
@@ -21,5 +22,6 @@ const ButtonWrapper = styled.button<BUTTON>`
   cursor: pointer;
   width: ${(props) => props.width};
   color: ${(props) => props.color};
+  margin: ${(props) => props.margin};
   background: ${(props) => props.bgColor};
 `;
