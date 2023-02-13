@@ -50,7 +50,8 @@ export default function main() {
   };
 
   return (
-   {/* <LocationWrapper> */}
+    <div>
+      {/* <LocationWrapper> */}
       {/* 첫 로그인 후  */}
       {/* <MainBox>
         반가워요! <br />
@@ -63,7 +64,7 @@ export default function main() {
       {/* </LocationWrapper> */}
       <MainWrapper>
         <ContentWrapper>
-          <Title>님의 소중함</Title>
+          <Title>(주영)님의 소중함</Title>
           {showButton ? (
             <ComponentButton
               width="50%"
@@ -119,8 +120,6 @@ export default function main() {
         </Drawer>
       </MainWrapper>
     </div>
-      </NextButton>
-    </LocationWrapper>
   );
 }
 
