@@ -64,7 +64,7 @@ export default function main() {
       {/* </LocationWrapper> */}
       <MainWrapper>
         <ContentWrapper>
-          <Title>님의 소중함</Title>
+          <Title>(주영)님의 소중함</Title>
           {showButton ? (
             <ComponentButton
               width="50%"
