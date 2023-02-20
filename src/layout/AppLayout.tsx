@@ -11,11 +11,13 @@ const AppLayout: any = ({ component }: any) => {
 export default AppLayout;
 
 const StyledWrapper = styled.div`
-  width: 414px;
+  position: relative;
+  width: 500px;
   height: 100vh;
   min-height: 700px;
   margin: 0 auto;
   border: 1px solid #000;
+  overflow: hidden;
 `;
 
 const Layout = styled.div`
