@@ -2,10 +2,10 @@ import { Input } from "antd";
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import Button from "../../../../src/components/Button/Button";
-import ModalButton from "../../../../src/components/Modal/Modal";
+import Button from "../../../src/components/Button/Button";
+import ModalButton from "../../../src/components/Modal/Modal";
 
-function BoxLocation() {
+function Page_Box_Location() {
   const locationList = [
     {
       id: 0,
@@ -83,7 +83,7 @@ function BoxLocation() {
   );
 }
 
-export default BoxLocation;
+export default Page_Box_Location;
 
 const BoxLocationWrapper = styled.div`
   display: grid;
@@ -122,4 +122,3 @@ const StypedInput = styled(Input)`
     padding: 0px;
   }
 `;
-
