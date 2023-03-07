@@ -8,7 +8,7 @@ import ComponentButton from "../../src/components/Button/Button";
 import MainBox from "../../src/components/MainBox/MainBox";
 import ModalButton from "../../src/components/Modal/Modal";
 
-export default function main() {
+export default function Page_Main() {
   const router = useRouter();
   const [showButton, setShowButton] = useState(true);
   const [open, setOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function main() {
     messageApi.open({
       type: "success",
       content: "링크가 복사되었습니다!",
-      duration: 2
+      duration: 2,
     });
   };
 

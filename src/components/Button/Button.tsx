@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Button({ children, ...props }: BUTTON) {
+export default function Button({ children, ...props }: any) {
   return <ButtonWrapper {...props}>{children}</ButtonWrapper>;
 }
 

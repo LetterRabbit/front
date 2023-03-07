@@ -43,24 +43,30 @@ const ScreenEditor = () => {
 
           <Form.Item name="font">
             {["궁서체", "나눔고딕", "고딕"].map((font) => (
-              <button className="font">{font}</button>
+              <button className="font" key={font}>
+                {font}
+              </button>
             ))}
           </Form.Item>
 
           <Form.Item name="color">
             {["red", "pink", "blue"].map((color) => (
-              <button className="color" style={{ background: color }}>
+              <button
+                className="color"
+                style={{ background: color }}
+                key={color}
+              >
                 {color}
               </button>
             ))}
           </Form.Item>
 
           <Form.Item name="emoji" className="emoji-wrapper">
-            {[<SmileOutlined />, <SmileOutlined />, <SmileOutlined />].map(
-              (emoji) => (
-                <span className="emoji">{emoji}</span>
-              )
-            )}
+            {[1, 2, 3].map((emoji) => (
+              <span className="emoji" key={emoji}>
+                {emoji}
+              </span>
+            ))}
           </Form.Item>
         </Form>
       </Drawer>
