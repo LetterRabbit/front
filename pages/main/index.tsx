@@ -7,6 +7,7 @@ import styled from "styled-components";
 import ComponentButton from "../../src/components/Button/Button";
 import MainBox from "../../src/components/MainBox/MainBox";
 import ModalButton from "../../src/components/Modal/Modal";
+import { logout } from "../../src/modlue/logout";
 
 export default function Page_Main() {
   const router = useRouter();
@@ -95,6 +96,7 @@ export default function Page_Main() {
           )}
           <MainBox> </MainBox>
         </ContentWrapper>
+
         <ComponentButton
           width="100%"
           color="#fff"
@@ -103,11 +105,17 @@ export default function Page_Main() {
         >
           내 소중함 링크 공유하기
         </ComponentButton>
+        <Button type="primary" onClick={logout} className="logout-btn">
+          로그아웃
+        </Button>
+
         {contextHolder}
+
         <Img
           onClick={showDrawer}
           src="https://cdn-icons-png.flaticon.com/512/2989/2989870.png"
         />
+
         <Drawer
           title="Basic Drawer"
           placement="right"
@@ -144,6 +152,10 @@ const MainWrapper = styled.div`
   grid-template-rows: 80% 10%;
   place-items: center;
   min-height: 100vh;
+
+  .logout-btn {
+    bottom: 20px;
+  }
 `;
 
 const ContentWrapper = styled.div`
