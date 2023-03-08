@@ -12,11 +12,12 @@ export default AppLayout;
 
 const StyledWrapper = styled.div`
   position: relative;
-  width: 500px;
+  max-width: 664px;
   height: 100vh;
   min-height: 700px;
   margin: 0 auto;
-  border: 1px solid #000;
+
+  border: 1px solid #eee;
   overflow: hidden;
 `;
 
