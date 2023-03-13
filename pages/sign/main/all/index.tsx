@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
-export default function index() {
+export default function Page_All() {
   const router = useRouter();
   const testArr = [
     {
@@ -30,6 +31,16 @@ export default function index() {
       content: "안녕하세요6"
     }
   ];
+
+  // const styledRandom = (idx) => {
+  //   const hashKey = (13 / (idx + 1) + 0.2) % 1;
+  // const x = Math.floor(hashKey * 40);
+  // const y = Math.floor(hashKey * 40);
+  // const rotate = Math.floor(hashKey * (idx % 2 === 0 ? 30 : - 30));
+  // return {
+  // transform: 'rotate(' + rotate + 'deg)' + translateX(' + x + 'px)' + 'translateY(' + y + 'px)',}'
+  // };
+
   return (
     <PageWrapper>
       <Router onClick={() => router.back()}>
@@ -38,10 +49,10 @@ export default function index() {
       <ContentWrapper>
         <ContentTitle>To. (주영)</ContentTitle>
         {testArr.map((item, id) => {
-          return <Content key={id}>{item.content}</Content>;
+          return <Canvas key={id}>{item.content}</Canvas>;
         })}
+        <Content>편지입니다1</Content>
       </ContentWrapper>
-      <Pagenation>1234566</Pagenation>
     </PageWrapper>
   );
 }
@@ -71,11 +82,15 @@ const ContentTitle = styled.div`
 `;
 
 const Content = styled.div`
-  background-color: blue;
-  height: 120px;
+  background-color: #9d9d9d;
+  height: 520px;
   margin-bottom: 12px;
+  padding: 12px 14px;
 `;
 
-const Pagenation = styled.div`
-  background-color: red;
+const Canvas = styled.div`
+  height: 120px;
+  margin-bottom: 20px;
+  background-color: #9d9d9d;
+  padding: 12px 14px;
 `;
