@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Fragment } from "react";
 import { Button, Drawer, message } from "antd";
@@ -11,20 +11,20 @@ import ModalButton from "../../../src/components/Modal/Modal";
 export default function main() {
   const router = useRouter();
   const [showButton, setShowButton] = useState(true);
-  const [open, setOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const handleNow = () => {
     setShowButton(!showButton);
   };
 
-  // drawer
-  const showDrawer = () => {
-    setOpen(true);
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const handleOpenDrawer = () => {
+    setOpenDrawer(true);
   };
 
-  const onClose = () => {
-    setOpen(false);
+  const handleCloseDrawer = () => {
+    setOpenDrawer(false);
   };
 
   // modal
@@ -41,6 +41,20 @@ export default function main() {
   };
 
   // message
+
+  // const url = encodeURI(window.location.href);
+  const currentLocation = useRouter();
+  // console.log(currentLocation);
+  // Facebook
+  const shareUrl = () => {
+    window.open("http://localhost:4000/" + currentLocation.pathname);
+  };
+
+  const copyClipBoard = (URL: any) => {
+    // if (window.clipboardData.setData("text", URL))
+    //   alert("URL is copied in your clipboard");
+    // else alert("Coping URL is failed");
+  };
   const success = () => {
     messageApi.open({
       type: "success",
@@ -48,6 +62,8 @@ export default function main() {
       duration: 2
     });
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div>
@@ -64,6 +80,11 @@ export default function main() {
       {/* </LocationWrapper> */}
       <MainWrapper>
         <ContentWrapper>
+          <Img
+            className="sidebar"
+            onClick={handleOpenDrawer}
+            src="https://cdn-icons-png.flaticon.com/512/2989/2989870.png"
+          />
           <Title>(주영)님의 소중함</Title>
           {showButton ? (
             <ComponentButton
@@ -99,24 +120,33 @@ export default function main() {
           width="100%"
           color="#fff"
           bgColor="#8B8B8B"
-          onClick={success}
+          onClick={shareUrl}
         >
           내 소중함 링크 공유하기
         </ComponentButton>
         {contextHolder}
-        <Img
-          onClick={showDrawer}
-          src="https://cdn-icons-png.flaticon.com/512/2989/2989870.png"
-        />
         <Drawer
-          title="Basic Drawer"
+          width="300px"
           placement="right"
-          onClose={onClose}
-          open={open}
+          onClose={handleCloseDrawer}
+          open={openDrawer}
+          getContainer={false}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <DrawerInner>
+            <div className="name">소연이 님</div>
+            <div className="inner">
+              <img
+                className="boxImg"
+                src="https://cdn.shopify.com/s/files/1/0555/3537/0263/files/134-1347071_big-gift-box-vector-white-gift-box-logo.png?v=1638895329"
+                width="20px"
+              />
+              <span>내 소중함 보러가기</span>
+            </div>
+            <div className="info">
+              <p>소중함 소개</p>
+              <p>문의하기</p>
+            </div>
+          </DrawerInner>
         </Drawer>
       </MainWrapper>
     </div>
@@ -144,6 +174,15 @@ const MainWrapper = styled.div`
   grid-template-rows: 80% 10%;
   place-items: center;
   min-height: 100vh;
+  overflow: hidden;
+
+  .sidebar {
+    position: absolute;
+    width: 34px;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -169,4 +208,27 @@ const Img = styled.img`
   right: -10px;
   top: 0;
   cursor: pointer;
+`;
+
+const DrawerInner = styled.div`
+  margin-top: 40px;
+
+  .name {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+
+    .boxImg {
+      margin-right: 8px;
+    }
+  }
+
+  .info {
+    line-height: 2;
+  }
 `;
