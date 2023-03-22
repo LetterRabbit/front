@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
 import { useState } from "react";
-import { Fragment } from "react";
 import { Button, Drawer, message } from "antd";
 import styled from "styled-components";
 import ComponentButton from "../../../src/components/Button/Button";
@@ -40,30 +38,18 @@ export default function main() {
     setIsModalOpen(false);
   };
 
-  // message
+  // copy message
+  const currentLocation = "https://ubiquitous-heliotrope-63e3d2.netlify.app/";
 
-  // const url = encodeURI(window.location.href);
-  const currentLocation = useRouter();
-  // console.log(currentLocation);
-  // Facebook
-  const shareUrl = () => {
-    window.open("http://localhost:4000/" + currentLocation.pathname);
-  };
-
-  const copyClipBoard = (URL: any) => {
-    // if (window.clipboardData.setData("text", URL))
-    //   alert("URL is copied in your clipboard");
-    // else alert("Coping URL is failed");
-  };
-  const success = () => {
-    messageApi.open({
-      type: "success",
-      content: "링크가 복사되었습니다!",
-      duration: 2
+  const copyClipBoard = () => {
+    window.navigator.clipboard.writeText(currentLocation).then(() => {
+      messageApi.open({
+        type: "success",
+        content: "링크가 복사되었습니다!",
+        duration: 2
+      });
     });
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div>
@@ -120,7 +106,7 @@ export default function main() {
           width="100%"
           color="#fff"
           bgColor="#8B8B8B"
-          onClick={shareUrl}
+          onClick={copyClipBoard}
         >
           내 소중함 링크 공유하기
         </ComponentButton>
