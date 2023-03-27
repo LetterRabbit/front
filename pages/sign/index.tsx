@@ -13,45 +13,45 @@ const Page_Sign = () => {
     });
   };
 
-  const testLogin = (value) => {
-    const { id, password } = value;
+  // const testLogin = (value) => {
+  //   const { id, password } = value;
 
-    if (id === "test" && password === "test") {
-      return {
-        data: {
-          login: true,
-          isLoading: false,
-        },
-      };
-    }
+  //   if (id === "test" && password === "test") {
+  //     return {
+  //       data: {
+  //         login: true,
+  //         isLoading: false,
+  //       },
+  //     };
+  //   }
 
-    return;
-  };
+  //   return;
+  // };
 
-  const onFinish = async (value) => {
-    const res = testLogin(value);
+  // const onFinish = async (value) => {
+  //   // const res = testLogin(value);
 
-    if (!res) {
-      return Modal.error({
-        title: "error",
-        content: <div>로그인 실패! 재시도 해주세요.</div>,
-      });
-    }
+  //   if (!res) {
+  //     return Modal.error({
+  //       title: "error",
+  //       content: <div>로그인 실패! 재시도 해주세요.</div>,
+  //     });
+  //   }
 
-    sessionStorage.setItem(storageKey, `${Date.now()}`);
+  //   sessionStorage.setItem(storageKey, `${Date.now()}`);
 
-    try {
-      const response = await axios.post("/api/signin", res.data, {
-        headers: {
-          "content-type": "application/json",
-        },
-      });
+  //   try {
+  //     const response = await axios.post("/api/signin", res.data, {
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //     });
 
-      if (response) return location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     if (response) return location.reload();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <LoginWrapper>
@@ -61,7 +61,7 @@ const Page_Sign = () => {
         마음을 담은 음악과 메시지를 전달해보세요 ~ ❤
       </MainBox>
 
-      <Form onFinish={onFinish} className="test-login">
+      {/* <Form onFinish={onFinish} className="test-login">
         <Form.Item name="id">
           <Input placeholder="아이디 입력해주세요" />
         </Form.Item>
@@ -69,7 +69,7 @@ const Page_Sign = () => {
           <Input placeholder="비밀번호 입력해주세요" />
         </Form.Item>
         <Button htmlType="submit">임시 로그인</Button>
-      </Form>
+      </Form> */}
       <Button width="100%" bgColor="#F9E000" color="#111" onClick={kakaoLogin}>
         카카오로 로그인
       </Button>
