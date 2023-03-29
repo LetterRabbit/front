@@ -1,10 +1,18 @@
 import axios from "axios";
 import { useRouter } from "next/router";
+import { setCookie } from "nookies";
 import { useCallback, useEffect } from "react";
 
 const Kakao = () => {
   const router = useRouter();
   const { code: authCode, error: kakaoServerError } = router.query;
+
+  function replacer(key, value) {
+    if (typeof value === "string") {
+      return undefined;
+    }
+    return value;
+  }
 
   const loginHandler = useCallback(
     async (code: string | string[]) => {
@@ -22,8 +30,11 @@ const Kakao = () => {
         );
         console.log("responseresponse", response);
 
-        if (!!response.data) {
-          console.log("success>>>>", response);
+        if (!!response.data.access_token) {
+          setCookie(null, "access_token", response.data.access_token, {
+            maxAge: 60 * 60 * 24 * 365,
+            path: "/",
+          });
 
           router.push("/main");
         } else {
