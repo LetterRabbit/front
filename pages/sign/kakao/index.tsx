@@ -10,14 +10,14 @@ const Kakao = () => {
     async (code: string | string[]) => {
       try {
         const response: any = await axios.post(
-          "http://54.180.58.203:8000/users/login",
+          "http://letterforyou.link/users/login",
           null,
           {
             headers: {
               "Content-Type": "application/json",
               authCode: JSON.stringify(code),
             },
-            withCredentials: true,
+            // withCredentials: true,
           }
         );
         console.log("responseresponse", response);
@@ -25,10 +25,10 @@ const Kakao = () => {
         if (!!response.data) {
           console.log("success>>>>", response);
 
-          // router.push('/main');
+          router.push("/main");
         } else {
           // 실패하면 에러 페이지로 리다이렉트
-          router.push("/notifications/authentication-failed");
+          // router.push("/notifications/authentication-failed");
         }
       } catch (error) {
         console.log(error);
@@ -39,8 +39,6 @@ const Kakao = () => {
 
   useEffect((): any => {
     if (authCode) {
-      console.log(authCode);
-
       loginHandler(authCode);
     } else if (kakaoServerError) {
       router.push("/notifications/authentication-failed");
