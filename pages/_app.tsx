@@ -4,11 +4,9 @@ import { ConfigProvider } from "antd";
 import koKR from "antd/lib/locale/ko_KR";
 import AppLayout from "../src/layout/AppLayout";
 import { useEffect, useState } from "react";
-import PageSign from "./sign";
-
-import { useStore } from "../src/lib/store";
-import { useUser } from "../src/lib/useUser";
 import axios from "axios";
+import { access } from "fs";
+import { log } from "console";
 
 declare global {
   interface Window {
@@ -17,51 +15,39 @@ declare global {
 }
 
 export default function App({ Component, pageProps }): any {
-  // const getUser = useUser((state) => state.getUser);
-  // const requestAuthUser = useUser((state) => state.requestAuthUser);
-
   const kakaoInit = () => {
     window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
   };
+  const getCookieValue = (cookieName) => {
+    let cookieValue = "";
+    const cookies = document.cookie.split(";");
 
-  const request = async () => {
-    function getCookieValue(cookieName) {
-      let cookieValue = "";
-      const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      const cookiePrefix = `${cookieName}=`;
 
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        const cookiePrefix = `${cookieName}=`;
-
-        if (cookie.startsWith(cookiePrefix)) {
-          cookieValue = cookie.substring(cookiePrefix.length, cookie.length);
-          break;
-        }
+      if (cookie.startsWith(cookiePrefix)) {
+        cookieValue = cookie.substring(cookiePrefix.length, cookie.length);
+        break;
       }
-
-      return cookieValue;
     }
 
+    return cookieValue;
+  };
+
+  const request = async () => {
     const token = getCookieValue("access_token");
-    console.log("token", token);
-
-    // console.log("dd", JSON.parse(a.access_token));
-
+    console.log(token);
     const config = {
+      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: token,
+        Cookie: `access_token=${token}`,
       },
-      // withCredentials: true,
-
-      // cookie: { token },
     };
-
-    // console.log("document.Cookie", document.Cookie);
-
     try {
       const response: any = await axios.get(
-        "http://54.180.58.203:8000/users/me",
+        "https://letterforyou.link/users/me",
         config
       );
       console.log(response);
@@ -70,9 +56,9 @@ export default function App({ Component, pageProps }): any {
     }
   };
 
-  // useEffect(() => {
-  //   request();
-  // }, []);
+  useEffect(() => {
+    request();
+  }, []);
 
   return (
     <ConfigProvider locale={koKR}>

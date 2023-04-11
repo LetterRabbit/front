@@ -7,28 +7,19 @@ const Kakao = () => {
   const router = useRouter();
   const { code: authCode, error: kakaoServerError } = router.query;
 
-  function replacer(key, value) {
-    if (typeof value === "string") {
-      return undefined;
-    }
-    return value;
-  }
-
   const loginHandler = useCallback(
     async (code: string | string[]) => {
       try {
         const response: any = await axios.post(
-          "http://letterforyou.link/users/login",
+          "https://letterforyou.link/users/login",
           null,
           {
             headers: {
               "Content-Type": "application/json",
               authCode: JSON.stringify(code),
             },
-            // withCredentials: true,
           }
         );
-        console.log("responseresponse", response);
 
         if (!!response.data.access_token) {
           setCookie(null, "access_token", response.data.access_token, {
