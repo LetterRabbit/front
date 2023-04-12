@@ -1,0 +1,27 @@
+{
+    'id': 2635248280, 
+    'connected_at': '2023-01-24T06:02:24Z', 
+    'properties': {
+        'nickname': '정현'
+        }, 
+    'kakao_account': {
+        'profile_nickname_needs_agreement': False,
+         'profile': {
+            'nickname': '정현'
+            }, 
+            'has_email': True,
+             'email_needs_agreement': False,
+              'is_email_valid': True,
+               'is_email_verified': True,
+                'email': 'auddwd19@naver.com', 
+                'has_age_range': True, 
+                'age_range_needs_agreement': False, 
+                'age_range': '30~39', 
+                'has_birthday': True, 
+                'birthday_needs_agreement': False, 
+                'birthday': '1008', 
+                'birthday_type': 'SOLAR', 
+                'has_gender': True,
+                 'gender_needs_agreement': False, 
+                 'gender': 'male'}
+                }

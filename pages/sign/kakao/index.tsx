@@ -23,10 +23,10 @@ const Kakao = () => {
         );
         console.log(response);
         if (!!response.data.access_token) {
-          // setCookie(null, "access_token", response.data.access_token, {
-          //   maxAge: 60 * 60 * 24 * 365,
-          //   path: "/",
-          // });
+          setCookie(null, "access_token", response.data.access_token, {
+            maxAge: 60 * 60 * 24 * 365,
+            path: "/",
+          });
           console.log("response", response);
 
           router.push("/main");
