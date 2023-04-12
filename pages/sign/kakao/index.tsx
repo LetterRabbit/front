@@ -1,4 +1,5 @@
 import axios from "axios";
+import { log } from "console";
 import { useRouter } from "next/router";
 import { setCookie } from "nookies";
 import { useCallback, useEffect } from "react";
@@ -20,17 +21,18 @@ const Kakao = () => {
             },
           }
         );
-
+        console.log(response);
         if (!!response.data.access_token) {
-          setCookie(null, "access_token", response.data.access_token, {
-            maxAge: 60 * 60 * 24 * 365,
-            path: "/",
-          });
+          // setCookie(null, "access_token", response.data.access_token, {
+          //   maxAge: 60 * 60 * 24 * 365,
+          //   path: "/",
+          // });
+          console.log("response", response);
 
           router.push("/main");
         } else {
           // 실패하면 에러 페이지로 리다이렉트
-          // router.push("/notifications/authentication-failed");
+          router.push("/notifications/authentication-failed");
         }
       } catch (error) {
         console.log(error);

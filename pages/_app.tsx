@@ -18,35 +18,19 @@ export default function App({ Component, pageProps }): any {
   const kakaoInit = () => {
     window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
   };
-  const getCookieValue = (cookieName) => {
-    let cookieValue = "";
-    const cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      const cookiePrefix = `${cookieName}=`;
-
-      if (cookie.startsWith(cookiePrefix)) {
-        cookieValue = cookie.substring(cookiePrefix.length, cookie.length);
-        break;
-      }
-    }
-
-    return cookieValue;
-  };
 
   const request = async () => {
-    const token = getCookieValue("access_token");
-    console.log(token);
+    // const token = getCookieValue("access_token");
+
     const config = {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        // Cookie: `access_token=${token}`,
       },
     };
     try {
-      const response: any = await axios.get(
+      const response = await axios.get(
         "https://letterforyou.link/users/me",
         config
       );
@@ -58,6 +42,7 @@ export default function App({ Component, pageProps }): any {
 
   useEffect(() => {
     request();
+    // alert(document.cookie);
   }, []);
 
   return (
